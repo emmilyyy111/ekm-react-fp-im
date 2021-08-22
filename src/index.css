@@ -1,13 +1,95 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ *,
+::after,
+::before {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.top-bar {
+  background-color: rgb(255, 255, 194);
+  color:rgb(250, 61, 218);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+/* .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&family=Style+Script&family=Yanone+Kaffeesatz:wght@300&display=swap');
+
+.navbar{
+  padding: 20px;
+  /* display: flex; */
+  justify-content:space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  position: sticky;
+  flex-direction: row;
+  background-color: rgb(255, 203, 231);
+}
+ .inspo-me h1{
+  color:rgb(223, 20, 196);
+  padding: 1px;
+  font-family: fantasy;
+  text-decoration: none;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.nav-links a {
+  color: rgb(255, 117, 191);
+  font-weight: bold;
+  font-family: fantasy;
+}
+
+.navbar a {
+  text-decoration: none;
+  padding: 6px;
+  margin-right: 10px;
+} 
+
+.navbar a:hover {
+  color: #f1356d;
+}
+
+.forms{
+  background-color: rgb(240 255 164);
+  color: #ff3ca5;
+  font-family: fantasy;
+  padding-top: 3%;
+  font-weight: bold;
+  height: 500px;
+}
+
+.signup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signup-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.password-label-signup{
+  display:flex;
+}
+
+.signin{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
