@@ -1,100 +1,75 @@
-import { useEffect, useState } from 'react';
-import { Form, Button } from 'react-bootstrap'
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-
+import React, { useState } from 'react'
+import { Form, Button, FloatingLabel } from 'react-bootstrap'
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
+import Home from './Home'
 
 
 const Signup = () => {
   const [loading, setLoading] = useState(false)
-  const [fname, setFname] = useState('')
-  const [lname, setLname] = useState('')
-  const [age, setAge] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [user, setUser] = useState('')
-
-    const signupForm = {
-      fname: fname,
-      lname: lname,
-      age: age,
-      email: email,
-      password: password,
-    }
-
-    const handleUserSignup = (e) => {
-      e.preventDefault()
-      setLoading(true)
-      console.log(user)
-
-        fetch('http://34.205.65.154:5000/users', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signupForm),
-      })
-        .then((response) => {
-          setLoading(false)
-          return response.json()
-        })
-        .then((data) => {
-          setLoading(false)
-          console.log('User added', data)
-        })
-        .catch((err) => {
-          setLoading(false)
-          console.error(err)
-        })
-    }
-
-
-
-
-    return (
-      <Router >
-      <div className='forms'>
-        <h2 className='signup'>Sign up!</h2>
-        <div>
-        <div className='signup-form'> 
-        <Form>
-
-        <Form.Group controlId="formBasicfname">
-            <div><Form.Label>First name</Form.Label></div>
-            <Form.Control type="name" placeholder="first name" fname={setFname} />
-          </Form.Group>
-
-          <Form.Group controlId="formBasiclname">
-            <div><Form.Label>Last name</Form.Label></div>
-            <Form.Control type="name" placeholder="last name" lname={setLname} />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicage">
-            <div><Form.Label>Age</Form.Label></div>
-            <Form.Control type="age" placeholder="How old are you?" age={setAge} />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicEmail">
-            <div><Form.Label>Email address</Form.Label></div>
-            <Form.Control type="email" placeholder="Enter email" email={setEmail} />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
-            <div className="password-label-signup"><Form.Label>Password</Form.Label></div>
-            <Form.Control type="password" placeholder="Password" password={setPassword} />
-          </Form.Group>
-          &nbsp;
-          <br/>
-          <Button variant="primary" type="submit" 
-          onClick={handleUserSignup} user={setUser} >Sign up!</Button>
-        </Form>
-      </div>
-      </div>
-      </div>
-      </Router>
+  const [user, setUser] = useState(null)
+  let history = useHistory()
+console.log(user)
+  
+const signupForm = (e) => {
+    setUser(
+      {...user, [e.target.name]: e.target.value}
     )
-  };
+  }
 
+  const handleUserSignup = e => {
+    e.preventDefault()
+    setLoading(true)
+    console.log(user)
 
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then(response => {
+        setLoading(false)
+        return response.json()
+      })
+      .then(data => {
+        setUser(data)
+        history.push('/home')
+        
+      })
+      .catch(err => {
+        setLoading(false)
+        console.error(err)
+      })
+  }
+
+  return (
+    <>
+      <div className="forms">
+        <h2 className="signup">Sign up!</h2>
+        <FloatingLabel controlId="floatingInput" label="First Name" className="mb-3">
+          <Form.Control type="fname" name="fname" placeholder="first name here" onChange={signupForm} />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput" label="Last Name" className="mb-3" >
+          <Form.Control type="lname" name="lname" placeholder="last name here"  onChange={signupForm} />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3" >
+          <Form.Control type="email" name="email" placeholder="name@example.com"  onChange={signupForm} />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput" label="How old are you?" className="mb-3" >
+          <Form.Control type="age" name="age" placeholder="age"  onChange={signupForm} />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingPassword" label="Password">
+          <Form.Control type="password" name="password" placeholder="Password" onChange={signupForm} />
+        </FloatingLabel>
+          <Button variant="primary" type="submit" onClick={handleUserSignup} user={setUser}>
+          Sign up!
+        </Button>
+          
+        
+      </div>
+    </>
+  )
+}
 
 export default Signup;

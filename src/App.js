@@ -5,24 +5,32 @@ import Navbar from './components/Navbar'
 import Signin from './components/Signin'
 import Home from './components/Home'
 import Signup from './components/Signup'
-import About from './components/About'
+import allInspo from './components/AllOutfits'
+import { useState, createContext } from 'react'
 
+
+export const UserProfile = createContext(null)
 
 const App = () => {
+  const[user, setUser] = useState(null);
+  
   const title = 'Looking for inspo? Find it here!'
+
   return (
-    <div>
+    <>
+    <UserProfile.Provider value={{ user, setUser}}>
       <div className="top-bar">{title}</div>
       <Router>
-      <Navbar/>
+      <Navbar />
       <Switch>
           <Route path='/signin' component={Signin} />
           <Route path='/signup' component={Signup} />
-          <Route path='/about' component={About} />
+          <Route path='/alloutfits' component={allInspo} />
           <Route path='/' component={Home} />
       </Switch>
       </Router>
-      </div>
+      </UserProfile.Provider>
+      </>
   )
 }
 
