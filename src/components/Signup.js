@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { useContext } from 'react'
 import { Form, Button, FloatingLabel } from 'react-bootstrap'
 import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
 import Home from './Home'
-
+import { UserProfile } from '../App'
 
 const Signup = () => {
   const [loading, setLoading] = useState(false)
-  const [user, setUser] = useState(null)
+  const {user, setUser, setToken} = useContext(UserProfile)
   let history = useHistory()
 console.log(user)
   
@@ -28,12 +29,9 @@ const signupForm = (e) => {
       },
       body: JSON.stringify(user),
     })
-      .then(response => {
-        setLoading(false)
-        return response.json()
-      })
+      .then(response => response.json())
       .then(data => {
-        setUser(data)
+        setToken(data.insertId)
         history.push('/home')
         
       })
@@ -45,24 +43,35 @@ const signupForm = (e) => {
 
   return (
     <>
-      <div className="forms">
+      <div className="signupforms">
         <h2 className="signup">Sign up!</h2>
-        <FloatingLabel controlId="floatingInput" label="First Name" className="mb-3">
+    <div className="labelfn">First Name</div>
+        <FloatingLabel controlId="floatingInput" className="signup-form">
           <Form.Control type="fname" name="fname" placeholder="first name here" onChange={signupForm} />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput" label="Last Name" className="mb-3" >
+
+    <div className="labelln">Last Name</div>
+        <FloatingLabel controlId="floatingInput" className="signup-form" >
           <Form.Control type="lname" name="lname" placeholder="last name here"  onChange={signupForm} />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3" >
+
+    <div className="labelem">Email Address</div>
+        <FloatingLabel controlId="floatingInput" className="signup-form" >
           <Form.Control type="email" name="email" placeholder="name@example.com"  onChange={signupForm} />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput" label="How old are you?" className="mb-3" >
+
+    <div className="labelag">Age</div>
+        <FloatingLabel controlId="floatingInput" className="signup-form" >
           <Form.Control type="age" name="age" placeholder="age"  onChange={signupForm} />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingPassword" label="Password">
+
+    <div className="labelpw">Password</div>
+        <FloatingLabel controlId="floatingPassword" className="signup-form">
           <Form.Control type="password" name="password" placeholder="Password" onChange={signupForm} />
         </FloatingLabel>
-          <Button variant="primary" type="submit" onClick={handleUserSignup} user={setUser}>
+        
+        <br/>
+          <Button variant="primary" type="submit" onClick={handleUserSignup} setUser={setUser}>
           Sign up!
         </Button>
           

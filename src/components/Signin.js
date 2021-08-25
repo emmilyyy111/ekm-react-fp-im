@@ -1,14 +1,28 @@
-import { useState } from 'react'
+import { useState, useContext, useRef } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useHistory } from 'react-router'
+import { UserProfile } from '../App'
+import bcrypt from 'bcryptjs'
+
+const salt = bcrypt.genSaltSync(10)
 
 const Signin = () => {
+  // const email = useRef()
+  // const password = useRef()
   const [email, setEmail] =  useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState('')
+  const {setToken} = useContext(UserProfile)
   let history = useHistory()
 
+
+
+
+
   const signinForm = (e) => {
+
+    // const email = email.current.value
+    // const password = password.current.value
+    //const hashedPassword = bcrypt.hashSync(password, '$2a$10$CwTycUXWue0Thq9StjUM0u') // hash created previously created upon sign up
 
     setEmail(
       {...email, [e.target.name]: e.target.value}
@@ -16,23 +30,26 @@ const Signin = () => {
     setPassword(
       {...password, [e.target.name]: e.target.value}
     )
-    }
+  }
     console.log(email, password)
 
     const handleUserSignin = e => {
       e.preventDefault()
-      console.log(user)
+     
 
-  fetch('http://localhost:5000/users', {
+  fetch('http://localhost:5000/signin', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(user),
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
   })
     .then(response => response.json())
     .then(data => {
-      setUser(data)
+      setToken(data.insertId)
       history.push('/home')
       
     })
@@ -42,37 +59,34 @@ const Signin = () => {
 }
   
   return(
-    <div>
-        <h2 className='signin'>Sign in!</h2>
+    <div className="signinforms">
+        <h2 className="signin">Sign in!</h2>
         <div>
-        <div className='signin-form'> 
+        <div className="signin-form"> 
         <Form>
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group controlId="formBasicEmail" className="signin-form">
             <Form.Label>Email address
             </Form.Label>
             <Form.Control 
             type="email"
             placeholder="Enter email" 
             name='email'
-            // setEmail={email}
             onChange={signinForm}
-            // rules={[{required: true, message: 'Please enter your email',}]} 
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group controlId="formBasicPassword" className="signin-form" >
             <Form.Label>Password</Form.Label>
             <Form.Control 
             type="password" 
             placeholder="Password" 
             name='password'
-            // setPassword={password}
             onChange={signinForm}
-            // rules={[{required: true, message: 'Enter password here'}]}
+           
             />
           </Form.Group>
           
-          <Button variant="primary" type="submit" onClick={handleUserSignin} user={setUser} >Sign in!</Button>
+          <Button className="signin-btn" variant="primary" type="submit" onClick={handleUserSignin}>Sign in!</Button>
         </Form>
       </div>
       </div>

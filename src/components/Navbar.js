@@ -1,11 +1,11 @@
-import userEvent from "@testing-library/user-event";
-import { useState, useEffect, useContext } from "react"
-import AllInspo from "./AllOutfits"
+import { useContext } from "react"
 import { UserProfile } from '../App'
+import Home from './Home'
 
 
 const Navbar = () => {
-const {user} = useContext(UserProfile)
+const {token} = useContext(UserProfile)
+
 
   return (
     <nav className="navbar">
@@ -14,7 +14,7 @@ const {user} = useContext(UserProfile)
           <h1>Inspo me!</h1>
         </a>
       </div>
-      <div className="nav-links" >
+      <div className="nav-links">
         <a href="/home">
           Home
         </a>
@@ -22,7 +22,7 @@ const {user} = useContext(UserProfile)
         <a href="/alloutfits">
           All Inspo
         </a>
-    {!user
+    {!token
     ? 
     <>
     <a href="/signin">
@@ -33,9 +33,14 @@ const {user} = useContext(UserProfile)
         </a>
     </>
   : 
+  <>
         <a href="/signout">
           Signout
         </a>
+        <a href="/searchbystyle">
+          Search
+        </a>
+        </>
   }
         </div>
     </nav>

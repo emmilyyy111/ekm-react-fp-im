@@ -5,29 +5,33 @@ import Navbar from './components/Navbar'
 import Signin from './components/Signin'
 import Home from './components/Home'
 import Signup from './components/Signup'
-import allInspo from './components/AllOutfits'
+import AllInspo from './components/AllOutfits'
+import SearchByStyle from './components/SearchByStyle'
 import { useState, createContext } from 'react'
+import bcrypt from 'bcryptjs'
 
 
 export const UserProfile = createContext(null)
 
 const App = () => {
-  const[user, setUser] = useState(null);
-  
-  const title = 'Looking for inspo? Find it here!'
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null)
+
+  const title = 'Looking for outfit inspo? Find it here!'
 
   return (
     <>
-    <UserProfile.Provider value={{ user, setUser}}>
+    <UserProfile.Provider value={{ user, setUser, token, setToken}}>
       <div className="top-bar">{title}</div>
       <Router>
       <Navbar />
       <Switch>
           <Route path='/signin' component={Signin} />
           <Route path='/signup' component={Signup} />
-          <Route path='/alloutfits' component={allInspo} />
-          <Route path='/' component={Home} />
-      </Switch>
+         <Route path='/alloutfits' component={AllInspo} />  
+         <Route path='/searchbystyle' component={SearchByStyle} />
+        <Route path='/' component={Home} />
+      </Switch> 
       </Router>
       </UserProfile.Provider>
       </>

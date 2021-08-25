@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react'
 
 
-const AllInspo = () => {
+const AllInspo = ({style}) => {
     const [outfits, setOutfits] = useState ([])
-console.log(outfits)
+    console.log(style)
+    
+    style = !style ? "" : style
+
     useEffect(() => {
-        fetch('http://localhost:5000/outfits')
+      console.log(style)
+        fetch(`http://localhost:5000/outfits/${style}`)
         .then(response => response.json())
         .then(data => setOutfits(data))
         .catch(err => alert(err))
-    }, [])
+    }, [style])
     
 
   return (
-    <>
+    <div className="all-outfits">
   {outfits.map(allOutfits => {
     const outfit = allOutfits
     return (
@@ -21,7 +25,7 @@ console.log(outfits)
     )
    })
   }
-  </>
+  </div>
   )       
 }
 export default AllInspo;
