@@ -1,10 +1,11 @@
 import { DropdownButton, Dropdown } from 'react-bootstrap'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import AllInspo from './AllOutfits'
+import { UserProfile } from '../App'
 
 
 const SearchByStyle = () => {
-  
+    const {token} = useContext(UserProfile)
 
   const [style, setStyle] = useState(null)
 

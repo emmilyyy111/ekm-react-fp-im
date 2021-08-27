@@ -32,6 +32,7 @@ const signupForm = (e) => {
       .then(response => response.json())
       .then(data => {
         setToken(data.insertId)
+        localStorage.setItem('token', data.insertId)
         history.push('/home')
         
       })

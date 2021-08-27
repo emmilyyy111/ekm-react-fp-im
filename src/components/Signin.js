@@ -7,22 +7,15 @@ import bcrypt from 'bcryptjs'
 const salt = bcrypt.genSaltSync(10)
 
 const Signin = () => {
-  // const email = useRef()
-  // const password = useRef()
+  
   const [email, setEmail] =  useState('')
   const [password, setPassword] = useState('')
   const {setToken} = useContext(UserProfile)
+  // const hashedPassword = bcrypt.hashSync(password, '$2a$10$CwTycUXWue0Thq9StjUM0u')
   let history = useHistory()
 
 
-
-
-
   const signinForm = (e) => {
-
-    // const email = email.current.value
-    // const password = password.current.value
-    //const hashedPassword = bcrypt.hashSync(password, '$2a$10$CwTycUXWue0Thq9StjUM0u') // hash created previously created upon sign up
 
     setEmail(
       {...email, [e.target.name]: e.target.value}
@@ -43,13 +36,13 @@ const Signin = () => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      email: email,
-      password: password,
+     email, password,
     }),
   })
     .then(response => response.json())
     .then(data => {
-      setToken(data.insertId)
+      setToken(data)
+      localStorage.setItem('token', data)
       history.push('/home')
       
     })

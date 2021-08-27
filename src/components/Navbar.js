@@ -15,16 +15,15 @@ const {token} = useContext(UserProfile)
         </a>
       </div>
       <div className="nav-links">
+    {!token 
+    ? (
+    <>
         <a href="/home">
           Home
         </a>
-      
         <a href="/alloutfits">
           All Inspo
         </a>
-    {!token
-    ? 
-    <>
     <a href="/signin">
           Sign in
         </a>
@@ -32,16 +31,22 @@ const {token} = useContext(UserProfile)
           Sign up
         </a>
     </>
-  : 
+     ) : (
   <>
-        <a href="/signout">
-          Signout
+        <a href="/home">
+          Home
+        </a>
+        <a href="/alloutfits">
+          All Inspo
         </a>
         <a href="/searchbystyle">
-          Search
+          Search Styles
+        </a>
+        <a href="/signout" onClick={() => localStorage.clear()}>
+          Signout
         </a>
         </>
-  }
+     )}
         </div>
     </nav>
   )

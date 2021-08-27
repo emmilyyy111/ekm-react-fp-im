@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-
+import { useState, useEffect, useContext } from 'react'
+import { UserProfile } from '../App'
 
 const AllInspo = ({style}) => {
+  const {token} = useContext(UserProfile)
     const [outfits, setOutfits] = useState ([])
     console.log(style)
     

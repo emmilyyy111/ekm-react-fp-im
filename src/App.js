@@ -9,13 +9,14 @@ import AllInspo from './components/AllOutfits'
 import SearchByStyle from './components/SearchByStyle'
 import { useState, createContext } from 'react'
 import bcrypt from 'bcryptjs'
+import Footer from './components/Footer'
 
 
 export const UserProfile = createContext(null)
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(localStorage.getItem("token"))
 
   const title = 'Looking for outfit inspo? Find it here!'
 
@@ -32,6 +33,7 @@ const App = () => {
          <Route path='/searchbystyle' component={SearchByStyle} />
         <Route path='/' component={Home} />
       </Switch> 
+      <Footer />
       </Router>
       </UserProfile.Provider>
       </>
