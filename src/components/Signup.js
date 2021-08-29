@@ -22,7 +22,7 @@ const signupForm = (e) => {
     setLoading(true)
     console.log(user)
 
-    fetch('http://localhost:5000/users', {
+    fetch('http://34.205.65.154:5000/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

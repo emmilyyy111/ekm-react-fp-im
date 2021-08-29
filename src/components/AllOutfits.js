@@ -10,7 +10,7 @@ const AllInspo = ({style}) => {
 
     useEffect(() => {
       console.log(style)
-        fetch(`http://localhost:5000/outfits/${style}`)
+        fetch(`http://34.205.65.154:5000/outfits/${style}`)
         .then(response => response.json())
         .then(data => setOutfits(data))
         .catch(err => alert(err))
