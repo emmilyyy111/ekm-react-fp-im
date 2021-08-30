@@ -8,7 +8,7 @@ an app that generates outfit ideas based off of what style you pick.
 ## App URL
 http://inspome-app.s3-website-us-east-1.amazonaws.com/
 
-## Structure
+## MVP
 full-stack app using react, nodejs, express, aws, mysql
 
 ## Available Scripts
