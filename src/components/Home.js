@@ -10,7 +10,7 @@ const Home = () => {
       <>
       {!token &&
       <div className="neon">
-        <h2 className="neontext">Sign up to search your perfect outfit✨</h2>
+        <h2 className="neontext">Sign up to search for your perfect outfit✨</h2>
         </div>
       }
     <div className="home home-container">

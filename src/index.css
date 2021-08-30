@@ -14,12 +14,6 @@
   justify-content: center;
 }
 
-/* .nav {
-  display: flex;
-  flex-wrap: nowrap;
-  list-style: none;
-} */
-
 @import url('https://fonts.googleapis.com/css2?family=MonteCarlo&family=Style+Script&family=Yanone+Kaffeesatz:wght@300&display=swap');
 
 .navbar{
@@ -32,6 +26,7 @@
   flex-direction: row;
   background-color: rgb(255, 203, 231);
 }
+
  .inspo-me h1{
   color:rgb(223, 20, 196);
   padding: 1px;
@@ -72,18 +67,19 @@
   align-items: center;
 }
 
-
 .signup {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .signup-form{
   display: flex;
   align-items: center;
   justify-content: center;
   width: 600px;
 }
+
 .password-label-signup{
   display:flex;
 }
@@ -134,18 +130,21 @@
   display: ftart;
   justify-content: flex-start;
 }
+
 .labelem{
   margin-right: 55%;
   display: flex;
   display: ftart;
   justify-content: flex-start;
 }
+
 .labelag{
   margin-right: 62%;
   display: flex;
   display: ftart;
   justify-content: flex-start;
 }
+
 .labelpw{
   margin-right: 58%;
   display: flex;
@@ -166,24 +165,21 @@
   height: 400px;
 }
 
-
 .neontext {
   background-color: rgb(255, 0, 234);
   color: white;
   height: 70px;
   display: flex;
   margin-bottom: 0%;
-  font-family: cursive;
+  font-family: monospace;
   justify-content: center;
-  align-items: center;
-  
+  align-items: center; 
 }
 
 .neontext {
   animation: flicker 1.5s infinite alternate;
   color: #fff;
 }
-
 
 @keyframes flicker {
     
@@ -210,7 +206,6 @@
 h2 {
  font-size: 1.8rem;
 }
-
 
 body {
   font-size: 18px;
