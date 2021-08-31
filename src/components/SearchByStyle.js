@@ -11,14 +11,15 @@ const SearchByStyle = () => {
 
   return (
     <div>
-        <div>
-      <DropdownButton id="dropdown-basic-button" title="Search outfit by style">
+        <div className="search-style-bar">
+      <DropdownButton className="search-style-bar" 
+       title="Search outfit by style">
       <Dropdown.Item title="Neutral" onClick={() => setStyle('neutral')}>Neutral</Dropdown.Item>
         <Dropdown.Item title="Vibrant" onClick={() => setStyle('vibrant')}>Vibrant</Dropdown.Item>
         <Dropdown.Item title="Monochromatic" onClick={() => setStyle('monochromatic')}>Monochromatic</Dropdown.Item>
         <Dropdown.Item title="Vintage" onClick={() => setStyle('vintage')}>Vintage</Dropdown.Item>
         <Dropdown.Item title="Casual" onClick={() => setStyle('casual')}>Casual</Dropdown.Item>
-        <Dropdown.Item title="Sexy" onClick={() => setStyle('sexy')}>Sexy</Dropdown.Item>
+        <Dropdown.Item title="Sexy" onClick={() => setStyle('sexy')}>Flirty</Dropdown.Item>
         <Dropdown.Item title="Elegant" onClick={() => setStyle('elegant')}>Elegant</Dropdown.Item>
         <Dropdown.Item title="Comfy" onClick={() => setStyle('comfy')}>Comfy</Dropdown.Item>
       </DropdownButton>

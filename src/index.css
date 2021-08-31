@@ -219,7 +219,7 @@ h2 {
   font-weight: 400;
 }
 
-.footer{
+.footer {
   background-color: black;
   color:rgb(250, 61, 218);
   height: 100px;
@@ -228,4 +228,17 @@ h2 {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+}
+
+.search-style-bar {
+  display:flex;
+  justify-content: center;
+  background-color: black;
+  color: #fff;
+}
+
+button.dropdown-toggle.btn.btn-primary {
+  color: rgb(255, 0, 234);
+  background-color: #000000;
+  border-color: white;
 }
